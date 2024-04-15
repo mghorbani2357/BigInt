@@ -88,7 +88,8 @@ unsigned int *BCDToBinary(const char *bcd, unsigned int charSize) {
 
     while (!BCDZeroCheck(bcdCopy, charSize)) {
         for (int i = (int) bitSize - 1; i >= 0; i--) {
-            *(integer + i / 32) |= (*(bcd+charSize-1) %2) << ((bitSize-i)%32);
+            *(integer + i / 32) |= (*(bcdCopy+charSize-1) %2) << ((bitSize-i)%32);
+            divideBCDTo10(bcdCopy, charSize);
         }
     }
 
